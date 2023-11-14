@@ -8,8 +8,12 @@ param(
 $assetRipperUnityProject = $assetRipperDirectory + "\Bomb Rush Cyberfunk\ExportedProject"
 
 # https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy
-# xcopy /q/y/i "$(TargetPath)" "$(BepInExDirectory)\plugins\$(TargetName)" /E /H /C
-xcopy /i "$assetRipperUnityProject" "$outputDirectory" /e /h /c /EXCLUDE:xcopy-exclusions.txt
+xcopy /q /i "$assetRipperUnityProject" "$outputDirectory" /e /h /c /EXCLUDE:xcopy-exclusions.txt
+# For vending machines
+mkdir "$outputDirectory\Assets\Stages\Tower\materials"
+get-item "$assetRipperUnityProject\Assets\Stages\Tower\materials\TowerProps01_*" | ForEach-Object {
+    Copy-Item $_.fullname "$outputDirectory\Assets\Stages\Tower\materials\$($_.name)"
+}
 
 # Add package dependencies
 node ./fix-manifest.mjs $outputDirectory/Packages/manifest.json

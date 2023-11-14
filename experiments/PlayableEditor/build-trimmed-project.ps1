@@ -8,7 +8,7 @@ param(
 $assetRipperUnityProject = $assetRipperDirectory + "\Bomb Rush Cyberfunk\ExportedProject"
 
 # https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy
-xcopy /q /i "$assetRipperUnityProject" "$outputDirectory" /e /h /c /EXCLUDE:xcopy-exclusions.txt
+xcopy /q /i "$assetRipperUnityProject" "$outputDirectory" /e /h /c /EXCLUDE:xcopy-exclude-build-trimmed-project.txt
 # For vending machines
 mkdir "$outputDirectory\Assets\Stages\Tower\materials"
 get-item "$assetRipperUnityProject\Assets\Stages\Tower\materials\TowerProps01_*" | ForEach-Object {

@@ -1,8 +1,8 @@
 param(
     # Directory of Unity project
-    $outputDirectory
+    $projectDirectory
 )
-rm "$outputDirectory/Library"
-rm "$outputDirectory/Logs"
-rm "$outputDirectory/Temp"
-rm "$outputDirectory/UserSettings"
+Remove-Item "$projectDirectory/Library"
+Remove-Item "$projectDirectory/Logs"
+Remove-Item "$projectDirectory/Temp"
+Remove-Item "$projectDirectory/UserSettings"

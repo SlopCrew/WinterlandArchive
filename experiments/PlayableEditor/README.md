@@ -44,7 +44,7 @@ Rough outline of how to accomplish this:
 - [x] Other steps from my guide: https://github.com/cspotcode/bomb-rush-cyberfunk-modding
 - [x] Turn off domain reload
 - Load it once to:
-  - [ ] run API conversion on the DLLs
+  - [x] run API conversion on the DLLs
   - Fix pitch-black shadows
     - [x] Detach baked lighting ("Lighting" window, "Baked Lightmaps", "Lighting Data Asset" hit delete to detach)
     - [x] Enable environment lighting ("Lighting" window, "Environment", "Environment Lighting" source = "Color", set to grey)

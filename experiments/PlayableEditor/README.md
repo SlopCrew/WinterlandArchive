@@ -3,8 +3,8 @@ Tracking cspotcode's experiment to create a Unity Editor project that is playabl
 
 ## TODOs
 
-- [ ] fix exclusion filter to understand asset bundles, not just directories [can skip if limited time]
-- [ ] Upload complete assetripper export to OneDrive, for stable GUIDs in future
+- [SKIPPED] fix exclusion filter to understand asset bundles, not just directories [can skip if limited time]
+- [x] Upload complete assetripper export to OneDrive, for stable GUIDs in future
 - [ ] Prep stripped project, upload to OneDrive
 
 ## Download
@@ -15,7 +15,7 @@ https://1drv.ms/f/s!AigtPPaAHhPfp8gbt3OGc2bZ4iXy7g?e=LnnVxW (currently empty)
 
 ## Sales Pitch
 
-Why the heck would we want to load a big project into the editor?
+Why the heck would we want to load a heavy project into the editor?
 
 Having the game in editor has some benefits.
 
@@ -37,15 +37,19 @@ Rough outline of how to accomplish this:
 - [x] Export from assetripper, ~~with yaml shaders~~
 - [x] Delete a bunch of files to shrink the project
 - ~~fix shaders by fixing parse errors for arrays of ints~~
-- [ ] Remove Steam DLLs
+- [SKIPPED] Remove Steam DLLs
 - [ ] Apply my code changes that enable Play button in editor
 - [ ] Add mapping toolkit as well-defined subdirectory (upgrades should mean import new `.unitypackage` on top of old, or equivalent)
 - [x] Modify `manifest.json` to auto-install Unity UI, Timeline, VSCode, and VS extensions
 - [x] Other steps from my guide: https://github.com/cspotcode/bomb-rush-cyberfunk-modding
 - [x] Turn off domain reload
-- [x] Load it once to run API conversion on the DLLs
+- Load it once to:
+  - [ ] run API conversion on the DLLs
+  - Fix pitch-black shadows
+    - [x] Detach baked lighting ("Lighting" window, "Baked Lightmaps", "Lighting Data Asset" hit delete to detach)
+    - [x] Enable environment lighting ("Lighting" window, "Environment", "Environment Lighting" source = "Color", set to grey)
 - [x] Clean it -- delete `Library` et al
-- Zip it up for the team
+- [ ] Zip it up for the team
 
 - Test import (do not ship tested import, b/c will include massive `Library` directory)
   - Does play button work?
@@ -82,7 +86,7 @@ Still to be trimmed:
 - Assets/meshes/Combined*??
   - No, I tried, it broke stuff
 
-Instead of excluding audio, we neuter it.  We find every .ogg and replace it with a copy of empty.ogg.  This preserves references,
+Instead of excluding audio, we neuter it.  We find every `.ogg` and replace it with a copy of `empty.ogg`.  This preserves references,
 so referenced audio *should* play correctly in game even though editor is silent.
 
   Assets\audio

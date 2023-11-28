@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Reptile;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Winterland.MapStation.Common.VanillaAssets {
     /// <summary>
@@ -44,9 +45,29 @@ namespace Winterland.MapStation.Common.VanillaAssets {
                 }
                 var bundle = fieldSyntax.Substring(equalsIndex + 1, colonIndex - equalsIndex - 1);
                 var path = fieldSyntax.Substring(colonIndex + 1);
+                var hasFileId = false;
+                long fileId = 0;
+                var pathColonIndex = path.IndexOf(":");
+                if(pathColonIndex >= 0) {
+                    hasFileId = true;
+                    fileId = long.Parse(path.Substring(pathColonIndex + 1));
+                    path = path.Substring(0, pathColonIndex);
+                }
 
                 // Get asset
-                var asset = Core.Instance.Assets.LoadAssetFromBundle<UnityEngine.Object>(bundle, path);
+                UnityEngine.Object asset = null;
+                if(hasFileId) {
+                    Bundle value = null;
+                    if (Core.Instance.Assets.availableBundles.TryGetValue(bundle, out value) && value.IsLoaded)
+                    {
+                        asset = value.AssetBundle.LoadAsset(path);
+                        
+                    }
+                } else {
+                    asset = Core.Instance.Assets.LoadAssetFromBundle<UnityEngine.Object>(bundle, path);
+                }
+                AudioMixer m;
+                // m.FindMatchingGroups()
 
                 if(asset == null) {
                     Debug.Log(string.Format("{0}: Restoring reference to vanilla asset failed, asset not found: {1}.{2} = LoadAssetFromBundle(\"{3}\", \"{4}\")", nameof(VanillaAssetReference), component.GetType().Name, name, bundle, path));

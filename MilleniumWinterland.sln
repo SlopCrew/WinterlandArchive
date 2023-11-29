@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Winterland.MapStation.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrewBoomAPI", "libs\CrewBoomAPI\CrewBoomAPI.csproj", "{466970AD-547B-43D4-8BE0-C295D143699B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Winterland.MapStation.Editor", "Winterland.MapStation.Editor\Winterland.MapStation.Editor.csproj", "{21799CA1-F90D-4A9F-BF59-8A67264CD6C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{466970AD-547B-43D4-8BE0-C295D143699B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{466970AD-547B-43D4-8BE0-C295D143699B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{466970AD-547B-43D4-8BE0-C295D143699B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21799CA1-F90D-4A9F-BF59-8A67264CD6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21799CA1-F90D-4A9F-BF59-8A67264CD6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21799CA1-F90D-4A9F-BF59-8A67264CD6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21799CA1-F90D-4A9F-BF59-8A67264CD6C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

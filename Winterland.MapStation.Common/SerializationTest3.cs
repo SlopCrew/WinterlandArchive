@@ -22,7 +22,7 @@ namespace Winterland.MapStation.Common {
         public class Item {
             public string Name;
         }
-        public class Node_Item : Node<Item, Node_Item> {}
+        public class Node_Item : Node3<Item, Node_Item> {}
 
         private void OnValidate() {
             data.Other.syncToLinkedList();
@@ -61,7 +61,7 @@ namespace Winterland.MapStation.Common {
     [Serializable]
     public class SList<T, NodeT> // TODO IMPLEMENT ISerializationCallbackReceiver
         where T : new()
-        where NodeT : Node<T, NodeT>, new() {
+        where NodeT : Node3<T, NodeT>, new() {
         // [HideInInspector]
         [SerializeReference]
         private NodeT first;
@@ -89,7 +89,7 @@ namespace Winterland.MapStation.Common {
         }
     }
     [Serializable]
-    public class Node<T, NodeT> where NodeT : Node<T, NodeT> {
+    public class Node3<T, NodeT> where NodeT : Node3<T, NodeT> {
         [SerializeReference]
         public T value;
         [SerializeReference]

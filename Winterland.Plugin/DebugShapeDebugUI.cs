@@ -1,4 +1,5 @@
- using UnityEngine;
+#if WINTER_DEBUG
+using UnityEngine;
 using Winterland.MapStation.Common;
 using Winterland.Plugin;
 
@@ -30,3 +31,4 @@ namespace Winterland.Common {
         }
     }
 }
+#endif

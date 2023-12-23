@@ -20,8 +20,9 @@ namespace Winterland.Plugin.Patches {
                 return true;
             Plugin.UpdateEvent += QuickLaunchUpdate;
             __instance.StartCoroutine(__instance.SetupGameToStage(Stage.square));
-#endif
             return false;
+#endif
+            return true;
         }
 
         private static void QuickLaunchUpdate() {

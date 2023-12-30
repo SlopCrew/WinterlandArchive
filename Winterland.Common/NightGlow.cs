@@ -72,6 +72,10 @@ namespace Winterland.Common {
             var color = Color;
             color.a *= fade;
             propertyBlock.SetColor(colorProperty, color);
+
+            if (mesh == null) return;
+
+            mesh.SetPropertyBlock(propertyBlock);
         }
 
         private void Verify() {

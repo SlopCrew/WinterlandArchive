@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Reptile;
+using Winterland.Common;
+using HarmonyLib;
+using Reptile.Phone;
+
+namespace Winterland.Plugin.Patches {
+    [HarmonyPatch(typeof(PlayerPhoneCameras))]
+    internal class PlayerPhoneCamerasPatch {
+		
+    }
+}

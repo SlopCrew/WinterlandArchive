@@ -21,7 +21,7 @@ namespace Winterland.Common {
 
         private void OnPostInitialization() {
             StageManager.OnStagePostInitialization -= OnPostInitialization;
-            var localProgress = WinterProgress.Instance.LocalProgress
+            var localProgress = WinterProgress.Instance.LocalProgress;
             if (localProgress.Objective.name == RequiredObjective.name) {
                 localProgress.Objective = ObjectiveToSet;
                 localProgress.Save();

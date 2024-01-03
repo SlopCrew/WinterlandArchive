@@ -27,6 +27,7 @@ namespace Winterland.Common {
                 var toyLineUI = WinterUI.Instance.ToyLineUI;
                 toyLineUI.Visible = true;
                 toyLineUI.SetCounter(winterPlayer.CollectedToyParts, Line.ToyParts.Length);
+                toyLineUI.SetToy(Line.Toy);
             }
             gameObject.SetActive(false);
             if (PickUpAudioClip != null) {

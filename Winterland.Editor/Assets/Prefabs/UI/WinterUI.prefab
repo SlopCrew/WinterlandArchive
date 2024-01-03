@@ -837,6 +837,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toyLineLabel: {fileID: 4557395119154865287}
+  toyPartImage: {fileID: 4756337236816440886}
+  BrainIcon: {fileID: 21300000, guid: bfecc80ef293e3540bb4b3ea3748d1ef, type: 3}
+  BulliedIcon: {fileID: 21300000, guid: 7d6a840dcbf4dec40ad4814b26134ce6, type: 3}
+  CarsIcon: {fileID: 21300000, guid: 2ea70b2c8a047ac429f76714c3df0de8, type: 3}
+  FugumanIcon: {fileID: 21300000, guid: eff509c513100a343b533237fecc1676, type: 3}
+  InfernoIcon: {fileID: 21300000, guid: b589df4ab5861ac43bd3da2329be95ea, type: 3}
+  PetemeatIcon: {fileID: 21300000, guid: 0f3764775f668704dafc64594b0fa535, type: 3}
+  PoloIcon: {fileID: 21300000, guid: bbc60a8db882f97468abbb088d8cfc34, type: 3}
+  SpaceyIcon: {fileID: 21300000, guid: 4e402466835deec469d38f0b6af4b3b9, type: 3}
 --- !u!1 &8976973460392176471
 GameObject:
   m_ObjectHideFlags: 0

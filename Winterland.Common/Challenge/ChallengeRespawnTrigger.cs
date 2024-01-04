@@ -26,10 +26,13 @@ namespace Winterland.Common.Challenge {
         }
 
         private IEnumerator RespawnRoutine(float fadeInDuration, float blackScreenDuration, float fadeOutDuration) {
+            var player = WorldHandler.instance.GetCurrentPlayer();
+            player.userInputEnabled = false;
             var effects = Core.Instance.UIManager.effects;
             effects.FadeInAndOutBlack(fadeInDuration, blackScreenDuration, fadeOutDuration);
             yield return new WaitForSeconds(fadeInDuration + blackScreenDuration);
             ChallengeLevel.CurrentChallengeLevel.Respawn();
+            player.userInputEnabled = true;
             busy = false;
         }
     }

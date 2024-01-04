@@ -38,6 +38,16 @@ public static class AppUtility {
         return app;
     }
 
+    public static TMP_FontAsset GetAppFont() {
+        var player = WorldHandler.instance.GetCurrentPlayer();
+        var phone = player.phone;
+        var sourceApp = phone.GetAppInstance<AppGraffiti>();
+        var overlay = sourceApp.transform.Find("Overlay");
+        var icons = overlay.transform.Find("Icons");
+        var header = icons.Find("HeaderLabel");
+        return header.GetComponent<TextMeshProUGUI>().font;
+    }
+
     public static RectTransform CreateAppOverlay(string title, Sprite icon, float fontSize = 80f) {
         var player = WorldHandler.instance.GetCurrentPlayer();
         var phone = player.phone;

@@ -109,29 +109,24 @@ namespace Winterland.Common {
             }
         }
 
+        public void Refresh() {
+            oldLightColor = LightColor;
+            oldShadowColor = ShadowColor;
+            if (Skybox != null)
+                RenderSettings.skybox.mainTexture = Skybox;
+            var sun = FindObjectOfType<AmbientManager>();
+            if (sun != null)
+                sun.transform.rotation = transform.rotation;
+            var lensFlare = sun.GetComponent<LensFlare>();
+            lensFlare.enabled = !Night;
+        }
+
         private void Awake() {
             Instance = this;
 #if !UNITY_EDITOR
-            oldLightColor = LightColor;
-            oldShadowColor = ShadowColor;
+            Refresh();
 
-            if (Skybox != null)
-                RenderSettings.skybox.mainTexture = Skybox;
-
-            sun = FindObjectOfType<AmbientManager>();
-            if (sun != null) {
-                sun.transform.rotation = transform.rotation;
-
-                if (Night) {
-                    var lens = sun.GetComponent<LensFlare>();
-                    var glare = sun.GetComponent<SunGlare>();
-                    var flare = sun.GetComponent<SunFlareGPU>();
-                    Destroy(lens);
-                    Destroy(glare);
-                    Destroy(flare);
-                }
-            }
-
+            var sun = FindObjectOfType<AmbientManager>();
             var sunLight = sun.GetComponent<Light>();
             var myLite = GetComponent<Light>();
             sunLight.color = myLite.color;

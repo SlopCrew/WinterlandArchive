@@ -22,6 +22,14 @@ namespace Winterland.Common.Phone {
             overlay.SetParent(transform, false);
 
             var timeOfDayOption = new AppOption("Time of Day", resources.TimeOfDaySpriteSelected, resources.TimeOfDaySpriteUnselected);
+            timeOfDayOption.OnClicked += () => {
+                var timeOfDay = TimeOfDayController.Instance;
+                if (timeOfDay == null) return;
+                var targetTimeOfDay = TimeOfDayController.TimesOfDay.Night;
+                if (timeOfDay.CurrentTimeOfDay == TimeOfDayController.TimesOfDay.Night)
+                    targetTimeOfDay = TimeOfDayController.TimesOfDay.Day;
+                timeOfDay.TransitionToTimeOfDay(targetTimeOfDay);
+            };
 
             var resetToysOption = new AppOption("Reset Toys", resources.ResetToysSpriteSelected, resources.ResetToysSpriteUnselected);
             resetToysOption.OnClicked += () => {
@@ -36,8 +44,6 @@ namespace Winterland.Common.Phone {
             ];
 
             PopulateButtons(resources);
-
-            buttons[selectedOption].PlayHighlightAnimation();
         }
 
         public override void OnAppEnable() {

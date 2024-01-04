@@ -15,10 +15,10 @@ using Winterland.Common;
 namespace Winterland.Plugin.Patches {
     [HarmonyPatch(typeof(AppHomeScreen))]
     internal class AppHomeScreenPatch {
-        [HarmonyPrefix]
+        [HarmonyPostfix]
         [HarmonyPatch(nameof(AppHomeScreen.Awake))]
-        private static void Awake_Prefix(AppHomeScreen __instance) {
-            var apps = __instance.m_Apps;
+        private static void Awake_Postfix(AppHomeScreen __instance) {
+            var apps = __instance.availableHomeScreenApps;
             Array.Resize(ref apps, apps.Length + 1);
             var winterlandApp = ScriptableObject.CreateInstance<HomeScreenApp>();
             winterlandApp.m_AppName = "WinterlandApp";
@@ -26,7 +26,20 @@ namespace Winterland.Plugin.Patches {
             winterlandApp.m_AppIcon = WinterAssets.Instance.PhoneResources.AppIcon;
             winterlandApp.appType = HomeScreenApp.HomeScreenAppType.NONE;
             apps[apps.Length - 1] = winterlandApp;
-            __instance.m_Apps = apps;
+            __instance.availableHomeScreenApps = apps;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(AppHomeScreen.OnAppEnable))]
+        private static void OnAppEnable_Postfix(AppHomeScreen __instance) {
+            var winterlandApp = __instance.availableHomeScreenApps.First(x => x.m_AppName == "WinterlandApp");
+
+            if (winterlandApp == null) return;
+
+            if (Core.Instance.BaseModule.CurrentStage == Stage.square)
+                __instance.AddApp(winterlandApp);
+            else
+                __instance.RemoveApp(winterlandApp);
         }
     }
 }

@@ -51,7 +51,9 @@ namespace Winterland.Common {
             else
                 SetNightLighting();
             CurrentTimeOfDay = timeOfDay;
-            WinterProgress.Instance.LocalProgress.Save();
+            var localProgress = WinterProgress.Instance.LocalProgress;
+            localProgress.TimeOfDay = CurrentTimeOfDay;
+            localProgress.Save();
         }
 
         private void SetDayLighting() {

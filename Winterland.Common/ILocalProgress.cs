@@ -15,6 +15,7 @@ namespace Winterland.Common {
         public int FauxJuggleHighScore { get; set; }
         public int ToyLinesCollected { get; }
         public bool ArcadeUnlocked { get; set; }
+        public TimeOfDayController.TimesOfDay TimeOfDay { get; set; }
         public void InitializeNew();
         public void Save();
         public void Load();

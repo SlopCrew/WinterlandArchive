@@ -28,6 +28,7 @@ namespace Winterland.Common {
             Day,
             Night
         }
+        [HideInInspector]
         public TimesOfDay CurrentTimeOfDay = TimesOfDay.Day;
         public float FadeDuration = 0.5f;
         public float BlackScreenDuration = 0.1f;
@@ -41,7 +42,7 @@ namespace Winterland.Common {
 
         private void Awake() {
             Instance = this;
-            SetTimeOfDay(CurrentTimeOfDay);
+            SetTimeOfDay(WinterProgress.Instance.LocalProgress.TimeOfDay);
         }
 
         private void SetTimeOfDay(TimesOfDay timeOfDay) {
@@ -50,6 +51,7 @@ namespace Winterland.Common {
             else
                 SetNightLighting();
             CurrentTimeOfDay = timeOfDay;
+            WinterProgress.Instance.LocalProgress.Save();
         }
 
         private void SetDayLighting() {

@@ -21,7 +21,8 @@ namespace Winterland.Common {
         public int FauxJuggleHighScore { get; set; }
         public int ToyLinesCollected => collectedToyLines.Count;
         public bool ArcadeUnlocked { get; set; }
-        private const byte Version = 4;
+        public TimeOfDayController.TimesOfDay TimeOfDay { get; set; }
+        private const byte Version = 5;
         private string savePath;
         private Dictionary<Guid, SerializedNPC> npcs;
         private HashSet<Guid> collectedToyLines;
@@ -41,6 +42,7 @@ namespace Winterland.Common {
             ArcadeUnlocked = false;
             Objective = ObjectiveDatabase.StartingObjective;
             savePath = Path.Combine(Paths.ConfigPath, "MilleniumWinterland/localprogress.mwp");
+            TimeOfDay = TimeOfDayController.TimesOfDay.Day;
         }
 
         public void Save() {
@@ -111,6 +113,7 @@ namespace Winterland.Common {
                 writer.Write(challenge.Key);
                 writer.Write(challenge.Value);
             }
+            writer.Write((int) TimeOfDay);
         }
 
         private void Read(BinaryReader reader) {
@@ -153,6 +156,9 @@ namespace Winterland.Common {
                     var guid = reader.ReadString();
                     challengeBestTimes[guid] = reader.ReadSingle();
                 }
+            }
+            if (version > 4) {
+                TimeOfDay = (TimeOfDayController.TimesOfDay)reader.ReadInt32();
             }
         }
 

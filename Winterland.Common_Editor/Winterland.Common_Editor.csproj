@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
   <!-- Build Winterland.Common w/UNITY_EDITOR defined -->
 
   <PropertyGroup>

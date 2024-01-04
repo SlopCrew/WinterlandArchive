@@ -26,8 +26,7 @@ namespace Winterland.Common.Phone {
             var resetToysOption = new AppOption("Reset Toys", resources.ResetToysSpriteSelected, resources.ResetToysSpriteUnselected);
             resetToysOption.OnClicked += () => {
                 var localPlayer = WinterPlayer.GetLocal();
-                if (localPlayer.CurrentToyLine != null)
-                    return;
+                localPlayer.DropCurrentToyLine();
                 ToyLineManager.Instance.RespawnAllToyLines();
             };
 

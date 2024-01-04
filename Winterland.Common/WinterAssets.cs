@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.IO;
 using Reptile;
+using Winterland.Common.Phone;
 
 namespace Winterland.Common {
     /// <summary>
@@ -17,6 +18,7 @@ namespace Winterland.Common {
         public static WinterAssets Instance { get; private set; }
 
         private string folder;
+        public PhoneResources PhoneResources = null;
         public AudioClip CheckpointClip = null;
         public AnimationClip PlayerSantaBounce = null;
 
@@ -27,6 +29,7 @@ namespace Winterland.Common {
             LoadBundles();
             CheckpointClip = WinterBundle.LoadAsset<AudioClip>("checkpoint");
             PlayerSantaBounce = WinterBundle.LoadAsset<AnimationClip>("playerSantaBounce");
+            PhoneResources = WinterBundle.LoadAsset<PhoneResources>("phoneResources");
         }
         
         private void LoadBundles() {

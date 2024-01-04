@@ -9,6 +9,7 @@ class WinterTrampoline : MonoBehaviour {
     public float Power;
     public AudioClip bounceAudioClip;
 
+#if !UNITY_EDITOR
     void OnTriggerEnter(Collider other) {
         if(!isActiveAndEnabled) return;
         var player = PlayerCollisionUtility.GetPlayer(other);
@@ -32,4 +33,5 @@ class WinterTrampoline : MonoBehaviour {
             }
         }
     }
+#endif
 }

@@ -10,6 +10,7 @@ namespace Winterland.Common {
         public static ToyLineManager Instance { get; private set; }
         public List<ToyLine> ToyLines = [];
 
+#if !UNITY_EDITOR
         private void Awake() {
             Instance = this;
         }
@@ -37,5 +38,6 @@ namespace Winterland.Common {
                 toyLine.Respawn();
             }
         }
+#endif
     }
 }

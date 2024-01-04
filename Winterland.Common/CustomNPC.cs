@@ -192,6 +192,7 @@ namespace Winterland.Common {
             return transform.position;
         }
 
+#if !UNITY_EDITOR
         public void Interact(Player player) {
             Sequence sequence = null;
             foreach (var branch in dialogueBranches) {
@@ -204,6 +205,7 @@ namespace Winterland.Common {
                 return;
             StartSequence(sequence);
         }
+#endif
 
         public void StartSequence(Sequence sequence) {
             var sequenceWrapper = sequence.GetCustomSequence(this);

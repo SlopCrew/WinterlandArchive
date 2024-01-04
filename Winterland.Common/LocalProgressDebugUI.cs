@@ -10,6 +10,7 @@ using UnityEngine.TextCore.Text;
 namespace Winterland.Common {
     public class LocalProgressDebugUI : MonoBehaviour {
         public static LocalProgressDebugUI Instance { get; private set; }
+#if !UNITY_EDITOR
         public static void Create() {
             if (Instance != null) return;
             var gameObject = new GameObject($"Winterland {nameof(LocalProgressDebugUI)}");
@@ -48,5 +49,6 @@ namespace Winterland.Common {
             }
             
         }
+#endif
     }
 }

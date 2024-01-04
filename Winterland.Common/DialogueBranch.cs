@@ -24,7 +24,7 @@ namespace Winterland.Common {
         public override bool IsPeer(Component other) {
             return other is DialogueBranch;
         }
-
+#if !UNITY_EDITOR
         public bool Test(CustomNPC npc) {
             if (npc.CurrentDialogueLevel < MinimumDialogueLevel)
                 return false;
@@ -56,5 +56,6 @@ namespace Winterland.Common {
             }
             return true;
         }
+#endif
     }
 }

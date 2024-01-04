@@ -20,6 +20,8 @@ namespace Winterland.Common {
         public string NoConnectionTarget = "";
         private bool immediate;
         private const float TimeOutSeconds = 5f;
+
+#if !UNITY_EDITOR
         public override void Run(bool immediate) {
             base.Run(immediate);
             this.immediate = immediate;
@@ -95,5 +97,6 @@ namespace Winterland.Common {
             else
                 Finish(immediate);
         }
+#endif
     }
 }

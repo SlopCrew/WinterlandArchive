@@ -12,7 +12,7 @@ namespace Winterland.Common {
         public ToyPart[] ToyParts => toyParts;
         public Color Color = Color.white;
         private ToyPart[] toyParts = null;
-
+#if !UNITY_EDITOR
         public void Respawn() {
             var localProgress = WinterProgress.Instance.LocalProgress;
             localProgress.SetToyLineCollected(Guid, false);
@@ -42,6 +42,7 @@ namespace Winterland.Common {
                 HideParts();
             ToyLineManager.Instance.RegisterToyLine(this);
         }
+#endif
 
         private void Reset() {
             GUID = Guid.NewGuid().ToString();

@@ -10,6 +10,7 @@ using HarmonyLib;
 using Reptile;
 using UnityEngine;
 using Winterland.Common.Phone;
+using Winterland.Common;
 
 namespace Winterland.Plugin.Patches {
     [HarmonyPatch(typeof(AppHomeScreen))]
@@ -22,6 +23,7 @@ namespace Winterland.Plugin.Patches {
             var winterlandApp = ScriptableObject.CreateInstance<HomeScreenApp>();
             winterlandApp.m_AppName = "WinterlandApp";
             winterlandApp.m_DisplayName = "winterland";
+            winterlandApp.m_AppIcon = WinterAssets.Instance.PhoneResources.AppIcon;
             winterlandApp.appType = HomeScreenApp.HomeScreenAppType.NONE;
             apps[apps.Length - 1] = winterlandApp;
             __instance.m_Apps = apps;

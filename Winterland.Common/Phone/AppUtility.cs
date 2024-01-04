@@ -38,7 +38,7 @@ public static class AppUtility {
         return app;
     }
 
-    public static RectTransform CreateAppOverlay(string title, Sprite icon) {
+    public static RectTransform CreateAppOverlay(string title, Sprite icon, float fontSize = 80f) {
         var player = WorldHandler.instance.GetCurrentPlayer();
         var phone = player.phone;
         var sourceApp = phone.GetAppInstance<AppGraffiti>();
@@ -48,7 +48,11 @@ public static class AppUtility {
         icons.Find("GraffitiIcon").GetComponent<Image>().sprite = icon;
         var header = icons.Find("HeaderLabel");
         Component.Destroy(header.GetComponent<TMProLocalizationAddOn>());
-        header.GetComponent<TextMeshProUGUI>().text = title;
+        var tmpro = header.GetComponent<TextMeshProUGUI>();
+        tmpro.text = title;
+        tmpro.fontSize = fontSize;
+        tmpro.fontSizeMax = fontSize;
+        tmpro.fontSizeMin = fontSize;
         return newOverlay.RectTransform();
     }
 }

@@ -30,6 +30,7 @@ namespace Winterland.Common {
         private Dictionary<Toys, BuiltToy> toyVisualByToy = [];
         private BuiltToy currentToyVisual = null;
 
+#if !UNITY_EDITOR
         public void HideBuiltToy() {
             if (currentToyVisual != null)
                 currentToyVisual.gameObject.SetActive(false);
@@ -117,5 +118,6 @@ namespace Winterland.Common {
                 effects.FullBlackToFadeOut(0f, FadeInDuration);
             }
         }
+#endif
     }
 }

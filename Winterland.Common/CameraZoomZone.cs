@@ -14,7 +14,7 @@ namespace Winterland.Common {
         public float CameraHeight = 2f;
         public bool ChangeCameraFOV = false;
         public float CameraFOV = 40f;
-
+#if !UNITY_EDITOR
         private void OnTriggerEnter(Collider other) {
             var player = other.GetComponent<Player>();
             if (player == null)
@@ -37,5 +37,6 @@ namespace Winterland.Common {
             if (winterPlayer.CurrentCameraZoomZone == this)
                 winterPlayer.CurrentCameraZoomZone = null;
         }
+#endif
     }
 }

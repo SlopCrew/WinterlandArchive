@@ -13,6 +13,7 @@ namespace Winterland.Common {
         public AudioClip PickUpAudioClip = null;
         private MaterialPropertyBlock propertyBlock = null;
 
+#if !UNITY_EDITOR
         public void Respawn() {
             gameObject.SetActive(true);
         }
@@ -43,6 +44,7 @@ namespace Winterland.Common {
         private void OnDestroy() {
             propertyBlock.Dispose();
         }
+#endif
 
         private void Initialize() {
             Line = GetComponentInParent<ToyLine>(true);

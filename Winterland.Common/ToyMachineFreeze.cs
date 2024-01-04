@@ -12,7 +12,7 @@ namespace Winterland.Common {
         private void Awake() {
             owner = GetComponentInParent<ToyMachine>();
         }
-
+#if !UNITY_EDITOR
         public void Activate(Player player) {
             if (player.ability is ToyMachineAbility)
                 return;
@@ -29,5 +29,6 @@ namespace Winterland.Common {
             owner.PlayEnterToyMachineSound();
             toyMachineAbility.SetMachine(owner, transform.forward);
         }
+#endif
     }
 }

@@ -22,6 +22,7 @@ namespace Winterland.Common {
         public int ToyLinesCollected => collectedToyLines.Count;
         public bool ArcadeUnlocked { get; set; }
         public TimeOfDayController.TimesOfDay TimeOfDay { get; set; }
+        public bool SingleplayerUpdateNew { get; set; }
         private const byte Version = 5;
         private string savePath;
         private Dictionary<Guid, SerializedNPC> npcs;
@@ -43,6 +44,7 @@ namespace Winterland.Common {
             Objective = ObjectiveDatabase.StartingObjective;
             savePath = Path.Combine(Paths.ConfigPath, "MilleniumWinterland/localprogress.mwp");
             TimeOfDay = TimeOfDayController.TimesOfDay.Day;
+            SingleplayerUpdateNew = true;
         }
 
         public void Save() {
@@ -114,6 +116,7 @@ namespace Winterland.Common {
                 writer.Write(challenge.Value);
             }
             writer.Write((int) TimeOfDay);
+            writer.Write(SingleplayerUpdateNew);
         }
 
         private void Read(BinaryReader reader) {
@@ -159,6 +162,7 @@ namespace Winterland.Common {
             }
             if (version > 4) {
                 TimeOfDay = (TimeOfDayController.TimesOfDay)reader.ReadInt32();
+                SingleplayerUpdateNew = reader.ReadBoolean();
             }
         }
 

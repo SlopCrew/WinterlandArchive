@@ -16,6 +16,7 @@ namespace Winterland.Common {
         public int ToyLinesCollected { get; }
         public bool ArcadeUnlocked { get; set; }
         public TimeOfDayController.TimesOfDay TimeOfDay { get; set; }
+        public bool SingleplayerUpdateNew { get; set; }
         public void InitializeNew();
         public void Save();
         public void Load();

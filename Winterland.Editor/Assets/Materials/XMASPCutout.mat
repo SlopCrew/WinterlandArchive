@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: XMASPCutout
-  m_Shader: {fileID: 4800000, guid: 4f8021f57e82a834eb67c07e76b5af44, type: 3}
+  m_Shader: {fileID: 4800000, guid: 043bcedb78e124a439a6499f0828616a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -63,7 +63,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _CutOut: 0
+    - _CutOut: 0.918
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0

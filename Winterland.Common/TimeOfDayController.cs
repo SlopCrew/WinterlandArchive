@@ -29,7 +29,7 @@ namespace Winterland.Common {
             Night
         }
         [HideInInspector]
-        public TimesOfDay CurrentTimeOfDay = TimesOfDay.Day;
+        public TimesOfDay CurrentTimeOfDay = TimesOfDay.Night;
         public float FadeDuration = 0.5f;
         public float BlackScreenDuration = 0.1f;
 

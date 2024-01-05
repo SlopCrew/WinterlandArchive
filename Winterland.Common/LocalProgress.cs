@@ -43,7 +43,7 @@ namespace Winterland.Common {
             ArcadeUnlocked = false;
             Objective = ObjectiveDatabase.StartingObjective;
             savePath = Path.Combine(Paths.ConfigPath, "MilleniumWinterland/localprogress.mwp");
-            TimeOfDay = TimeOfDayController.TimesOfDay.Day;
+            TimeOfDay = TimeOfDayController.TimesOfDay.Night;
             SingleplayerUpdateNew = true;
         }
 

@@ -15,6 +15,8 @@ namespace Winterland.Plugin
 {
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     [BepInDependency(WinterCharacters.CrewBoomGUID, BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("SlopCrew.Plugin", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("CommonAPI", BepInDependency.DependencyFlags.HardDependency)]
     public class Plugin : BaseUnityPlugin {
         public static Plugin Instance;
         public static ManualLogSource Log = null;

@@ -2,6 +2,7 @@ using BepInEx;
 using System;
 using Reptile;
 using CommonAPI;
+using CommonAPI.Phone;
 using BepInEx.Logging;
 using BepInEx.Bootstrap;
 using HarmonyLib;
@@ -10,6 +11,7 @@ using System.Reflection;
 using System.Linq;
 using Winterland.Common;
 using System.Runtime.CompilerServices;
+using Winterland.Common.Phone;
 
 namespace Winterland.Plugin
 {
@@ -50,6 +52,7 @@ namespace Winterland.Plugin
                 assetBundlesFolder = oldAssetBundlesFolder;
             }
             var winterAssets = new WinterAssets(assetBundlesFolder);
+            PhoneAPI.RegisterApp<AppWinterland>("winterland", winterAssets.PhoneResources.AppIcon);
             new WinterConfig(Config);
             WinterCharacters.Initialize();
             ObjectiveDatabase.Initialize(winterAssets.WinterBundle);

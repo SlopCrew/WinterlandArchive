@@ -1514,8 +1514,7 @@ MonoBehaviour:
   Owner: {fileID: 412883355137320465}
   Speaker: 1
   SpeakerName: ???
-  Text: Everyone working together brings a tear to my eye... or it would, if I had
-    tear ducts! Yohohohoho.
+  Text: The construction is now coming along nicely, all thanks to you! Yohohohoho.
   AudioClips: []
 --- !u!114 &203242155213009082
 MonoBehaviour:

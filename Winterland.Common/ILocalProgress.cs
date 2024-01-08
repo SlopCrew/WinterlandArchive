@@ -28,5 +28,6 @@ namespace Winterland.Common {
         public bool IsToyLineCollected(Guid guid);
         public void SetChallengeBestTime(ChallengeLevel challenge, float bestTime);
         public float GetChallengeBestTime(ChallengeLevel challenge);
+        public void UpdateTree(bool reset = false);
     }
 }

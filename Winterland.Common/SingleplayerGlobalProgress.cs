@@ -11,11 +11,6 @@ namespace Winterland.Common {
     /// </summary>
     public class SingleplayerGlobalProgress : WritableGlobalProgress {
         public SingleplayerGlobalProgress() {
-            var defaultState = new XmasServerEventStatePacket();
-            var phase = new XmasPhase();
-            phase.Active = true;
-            defaultState.Phases.Add(phase);
-            SetState(defaultState);
         }
     }
 }

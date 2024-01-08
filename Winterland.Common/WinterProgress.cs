@@ -12,13 +12,16 @@ namespace Winterland.Common {
         public WritableGlobalProgress WritableGlobalProgress = null;
         public WinterProgress() {
             Instance = this;
-            LocalProgress = new LocalProgress();
-            WritableGlobalProgress = new SingleplayerGlobalProgress();
+            var localProgress = new LocalProgress();
+            LocalProgress = localProgress;
+
 
 #if WINTER_DEBUG
             if (!WinterConfig.Instance.ResetLocalSaveValue)
 #endif
                 LocalProgress.Load();
+            WritableGlobalProgress = new SingleplayerGlobalProgress();
+            localProgress.MakeState();
         }
     }
 }

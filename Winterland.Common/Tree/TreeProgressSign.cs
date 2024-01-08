@@ -53,7 +53,7 @@ class TreeProgressSign : MonoBehaviour {
     }
 
     void Update() {
-        var goal = tree.TargetProgress.ActivePhaseGiftsGoal;
+        var goal = SingleplayerPhases.GetGoalForPhase(WinterProgress.Instance.LocalProgress.CurrentPhase);
         giftsCollectedText.text = WinterProgress.Instance.LocalProgress.CurrentPhaseGifts.ToString();
         giftsGoalText.text = "/" + goal.ToString();
         var goalTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);

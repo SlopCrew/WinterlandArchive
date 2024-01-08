@@ -10,6 +10,7 @@ using CommonAPI;
 using UnityEngine.XR.WSA;
 using System.Security.Principal;
 using Winterland.Common.Challenge;
+using SlopCrew.Server.XmasEvent;
 
 namespace Winterland.Common {
     /// <summary>
@@ -25,7 +26,7 @@ namespace Winterland.Common {
         public bool ArcadeUnlocked { get; set; }
         public TimeOfDayController.TimesOfDay TimeOfDay { get; set; }
         public bool SingleplayerUpdateNew { get; set; }
-        private const byte Version = 5;
+        private const byte Version = 6;
         private string savePath;
         private Dictionary<Guid, SerializedNPC> npcs;
         private HashSet<Guid> collectedToyLines;
@@ -33,6 +34,37 @@ namespace Winterland.Common {
 
         public LocalProgress() {
             InitializeNew();
+        }
+
+        public void UpdateTree(bool reset = false) {
+            if (TreeController.Instance == null) return;
+            var isLastPhase = CurrentPhase >= TreeController.Instance.treePhases.Length - 1;
+            if (!isLastPhase) {
+                var goal = SingleplayerPhases.GetGoalForPhase(CurrentPhase);
+                if (CurrentPhaseGifts >= goal) {
+                    CurrentPhase++;
+                    CurrentPhaseGifts = 0;
+                }
+            }
+            MakeState();
+            if (reset)
+                TreeController.Instance.ResetToTarget();
+        }
+
+        public void MakeState() {
+            var packet = new XmasServerEventStatePacket();
+            for(var i = 0; i <= CurrentPhase; i++) {
+                var phase = new XmasPhase();
+                phase.Active = false;
+                if (i == CurrentPhase)
+                    phase.Active = true;
+                else {
+                    phase.GiftsCollected = 1;
+                }
+                phase.GiftsGoal = 1;
+                packet.Phases.Add(phase);
+            }
+            (WinterProgress.Instance.GlobalProgress as SingleplayerGlobalProgress).SetState(packet);
         }
 
         // Default values for a blank save!
@@ -47,6 +79,8 @@ namespace Winterland.Common {
             savePath = Path.Combine(Paths.ConfigPath, "MilleniumWinterland/localprogress.mwp");
             TimeOfDay = TimeOfDayController.TimesOfDay.Night;
             SingleplayerUpdateNew = true;
+            CurrentPhase = 0;
+            CurrentPhaseGifts = 0;
         }
 
         public void Save() {
@@ -119,6 +153,8 @@ namespace Winterland.Common {
             }
             writer.Write((int) TimeOfDay);
             writer.Write(SingleplayerUpdateNew);
+            writer.Write(CurrentPhase);
+            writer.Write(CurrentPhaseGifts);
         }
 
         private void Read(BinaryReader reader) {
@@ -165,6 +201,10 @@ namespace Winterland.Common {
             if (version > 4) {
                 TimeOfDay = (TimeOfDayController.TimesOfDay)reader.ReadInt32();
                 SingleplayerUpdateNew = reader.ReadBoolean();
+            }
+            if (version > 5) {
+                CurrentPhase = reader.ReadInt32();
+                CurrentPhaseGifts = reader.ReadInt32();
             }
         }
 

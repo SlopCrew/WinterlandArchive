@@ -11,6 +11,8 @@ namespace Winterland.Common {
     public class TreeController : MonoBehaviour, ITreeState {
         public static TreeController Instance { get; private set; }
 
+        public Transform PhaseChangeRespawnPoint = null;
+
         [SerializeField]
         public PlayableDirector overallProgressDirector = null;
         [SerializeField]
@@ -39,7 +41,7 @@ namespace Winterland.Common {
         private bool isFastForwarding;
         public bool IsFastForwarding {
             get => isFastForwarding;
-            private set {
+            set {
                 isFastForwarding = value;
                 foreach(var treePart in treeParts) {
                     treePart.animator?.SetBoolString("IsFastForwarding", value);

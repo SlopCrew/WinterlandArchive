@@ -9670,7 +9670,6 @@ GameObject:
   - component: {fileID: 2393637156284957389}
   - component: {fileID: 7359132287366204396}
   - component: {fileID: 3276905570773535689}
-  - component: {fileID: 6713681702126183629}
   m_Layer: 19
   m_Name: Talk Dialogue
   m_TagString: Untagged
@@ -9766,7 +9765,7 @@ MonoBehaviour:
   Owner: {fileID: 6867858450604934136}
   Speaker: 1
   SpeakerName: ???
-  Text: Welcome, <color=yellow>$PLAYERNAME</color>.
+  Text: Welcome.
   AudioClips: []
 --- !u!114 &3276905570773535689
 MonoBehaviour:
@@ -9785,24 +9784,6 @@ MonoBehaviour:
   Speaker: 1
   SpeakerName: ???
   Text: 'Size of current gift batch: <color=yellow>$LOCALGIFTS</color>.'
-  AudioClips: []
---- !u!114 &6713681702126183629
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6263571196741139006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1888043476, guid: 422c0b035adbb23489ae9c9faef522c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Order: 4
-  Owner: {fileID: 6867858450604934136}
-  Speaker: 1
-  SpeakerName: ???
-  Text: 'Number of gifts delivered to New Amsterdam: <color=yellow>$GLOBALGIFTS</color>.'
   AudioClips: []
 --- !u!1 &6300826340933551505
 GameObject:

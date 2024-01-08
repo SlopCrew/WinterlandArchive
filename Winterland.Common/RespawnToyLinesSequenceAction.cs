@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using SlopCrew.API;
-using SlopCrew.Server.XmasEvent;
 using CommonAPI;
 using Reptile;
 using System.Collections;
@@ -25,73 +23,20 @@ namespace Winterland.Common {
         public override void Run(bool immediate) {
             base.Run(immediate);
             this.immediate = immediate;
-            var sequenceHandler = CustomSequenceHandler.instance;
-            var api = APIManager.API;
-            if (api != null && api.Connected) {
-                sequenceHandler.skipTextActiveState = SequenceHandler.SkipState.NOT_SKIPPABLE;
-                var giftCollectPacket = new XmasClientCollectGiftPacket();
-                NetManager.Instance.SendPacket(giftCollectPacket);
-                NetManager.Instance.OnPacket += ListenForPacket;
-                StartCoroutine(RunTimeout());
-            }
-            else {
-                RunNoConnection(immediate);
-            }
-        }
-
-        private IEnumerator RunTimeout() {
-            yield return new WaitForSeconds(TimeOutSeconds);
-            if (Sequence.CurrentAction == this) {
-                RunNoConnection(immediate);
-            }
-        }
-
-        private void ListenForPacket(XmasPacket packet) {
-            if (packet.PlayerID != uint.MaxValue)
-                return;
-            if (packet is XmasServerAcceptGiftPacket) {
-                RunSuccess(immediate);
-            }
-            else if (packet is XmasServerRejectGiftPacket) {
-                RunFailure(immediate);
-            }
+            RunSuccess(immediate);
         }
 
         private void RunSuccess(bool immediate) {
-            NetManager.Instance.OnPacket -= ListenForPacket;
             StopAllCoroutines();
             if (Sequence.Sequence.Skippable)
                 CustomSequenceHandler.instance.skipTextActiveState = SequenceHandler.SkipState.IDLE;
             var progress = WinterProgress.Instance.LocalProgress;
             ToyLineManager.Instance.RespawnAllToyLines();
             progress.Gifts++;
+            progress.CurrentPhaseGifts++;
             progress.Save();
             GiftPileManager.Instance.UpdatePiles();
             var action = Sequence.Sequence.GetActionByName(SuccessTarget);
-            if (action != null)
-                action.Run(immediate);
-            else
-                Finish(immediate);
-        }
-
-        private void RunFailure(bool immediate) {
-            NetManager.Instance.OnPacket -= ListenForPacket;
-            StopAllCoroutines();
-            if (Sequence.Sequence.Skippable)
-                CustomSequenceHandler.instance.skipTextActiveState = SequenceHandler.SkipState.IDLE;
-            var action = Sequence.Sequence.GetActionByName(RejectedTarget);
-            if (action != null)
-                action.Run(immediate);
-            else
-                Finish(immediate);
-        }
-
-        private void RunNoConnection(bool immediate) {
-            NetManager.Instance.OnPacket -= ListenForPacket;
-            StopAllCoroutines();
-            if (Sequence.Sequence.Skippable)
-                CustomSequenceHandler.instance.skipTextActiveState = SequenceHandler.SkipState.IDLE;
-            var action = Sequence.Sequence.GetActionByName(NoConnectionTarget);
             if (action != null)
                 action.Run(immediate);
             else

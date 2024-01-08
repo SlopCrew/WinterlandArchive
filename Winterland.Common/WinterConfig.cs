@@ -34,10 +34,8 @@ namespace Winterland.Common {
         public bool DisableKBMInputValue => DisableKBMInput.Value;
         public bool DebugUIValue => DebugUI.Value;
         public bool ResetLocalSaveValue => ResetLocalSave.Value;
-        public bool MockGlobalProgressLocallyValue => MockGlobalProgressLocally.Value;
         public float MockGlobalProgressStartTreeAtValue => MockGlobalProgressStartTreeAt.Value;
         public bool ShowRedDebugShapesValue => ShowRedDebugShapes.Value;
-        public bool LogPacketsValue => LogPackets.Value;
 #endif
 #endif
 
@@ -70,12 +68,6 @@ namespace Winterland.Common {
                 false,
                 "Reset our local Winterland progress."
             );
-            MockGlobalProgressLocally = file.Bind(
-                "Development",
-                "MockGlobalProgressLocally",
-                false,
-                "Do *not* sync global event progress to SlopCrew, for local testing."
-            );
             MockGlobalProgressStartTreeAt = file.Bind(
                 "Development",
                 "MockGlobalProgressStartTreeAt",
@@ -87,12 +79,6 @@ namespace Winterland.Common {
                 "ShowRedDebugShapes",
                 true,
                 "Show the semi-transparent red meshes from Unity Editor along grind lines, etc."
-            );
-            LogPackets = file.Bind(
-                "Development",
-                "LogPackets",
-                false,
-                "Log information about all custom packets received from SlopCrew"
             );
 #endif
         }

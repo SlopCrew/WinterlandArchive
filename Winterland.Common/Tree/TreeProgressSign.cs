@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using SlopCrew.API;
 using TMPro;
 using UnityEngine;
 
@@ -55,7 +54,7 @@ class TreeProgressSign : MonoBehaviour {
 
     void Update() {
         var goal = tree.TargetProgress.ActivePhaseGiftsGoal;
-        giftsCollectedText.text = tree.TargetProgress.ActivePhaseGiftsCollected.ToString();
+        giftsCollectedText.text = WinterProgress.Instance.LocalProgress.CurrentPhaseGifts.ToString();
         giftsGoalText.text = "/" + goal.ToString();
         var goalTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         goalTime = goalTime.AddSeconds(unixTimeStampComingSoon).ToLocalTime();
@@ -119,10 +118,7 @@ class TreeProgressSign : MonoBehaviour {
             normalProgressLabel.gameObject.SetActive(true);
             comingSoon999Label.gameObject.SetActive(false);
         }
-        totalGiftsCollectedText.text = tree.TargetProgress.totalGiftsCollected.ToString();
-        if(APIManager.API != null) {
-            playerCountText.text = APIManager.API.PlayerCount.ToString();
-        }
+        totalGiftsCollectedText.text = WinterProgress.Instance.LocalProgress.Gifts.ToString();
     }
 
     // Unused

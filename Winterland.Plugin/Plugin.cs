@@ -40,6 +40,7 @@ namespace Winterland.Plugin
         }
 
         private void Initialize() {
+            WinterNetworking.SlopCrewInstalled = Chainloader.PluginInfos.Keys.Contains("SlopCrew.Plugin");
             // Our local dev workflow uses a nested folder, but at release we realized last-minute it was breaking R2.
             // So this code will detect the nested folder and use it if it exists.
             var oldAssetBundlesFolder = Path.Combine(Path.GetDirectoryName(Info.Location), "AssetBundles");
@@ -52,10 +53,8 @@ namespace Winterland.Plugin
             new WinterConfig(Config);
             WinterCharacters.Initialize();
             ObjectiveDatabase.Initialize(winterAssets.WinterBundle);
-            NetManager.Create();
 #if WINTER_DEBUG
             DebugUI.Create(WinterConfig.Instance.DebugUI.Value);
-            NetManagerDebugUI.Create();
             TreeDebugUI.Create();
             LocalProgressDebugUI.Create();
             DebugShapeDebugUI.Create();

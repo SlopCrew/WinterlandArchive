@@ -16,6 +16,8 @@ namespace Winterland.Common {
     /// Keeps track of clientside progress for Winterland.
     /// </summary>
     public class LocalProgress : ILocalProgress {
+        public int CurrentPhaseGifts { get; set; }
+        public int CurrentPhase { get; set; }
         public WinterObjective Objective { get; set; }
         public int Gifts { get; set; }
         public int FauxJuggleHighScore { get; set; }

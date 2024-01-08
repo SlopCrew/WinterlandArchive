@@ -10,7 +10,7 @@
 
   <!-- Reference .cs from another directory -->
   <ItemGroup>
-    <Compile Include="../Winterland.Common/**/*.cs" Exclude="../Winterland.Common/obj/**/*.cs"/>
+    <Compile Include="../Winterland.Common/**/*.cs" Exclude="../Winterland.Common/obj/**/*.cs" />
   </ItemGroup>
 
   <Import Project="../Winterland.Common/Winterland.Common.csproj" />

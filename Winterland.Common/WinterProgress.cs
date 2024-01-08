@@ -13,15 +13,7 @@ namespace Winterland.Common {
         public WinterProgress() {
             Instance = this;
             LocalProgress = new LocalProgress();
-#if WINTER_DEBUG
-            if (WinterConfig.Instance.MockGlobalProgressLocallyValue) {
-                WritableGlobalProgress = new MockGlobalProgress();
-            } else {
-                WritableGlobalProgress = new NetworkedGlobalProgress();
-            }
-#else
-            WritableGlobalProgress = new NetworkedGlobalProgress();
-#endif
+            WritableGlobalProgress = new SingleplayerGlobalProgress();
 
 #if WINTER_DEBUG
             if (!WinterConfig.Instance.ResetLocalSaveValue)

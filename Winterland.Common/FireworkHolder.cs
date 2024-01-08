@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using SlopCrew.API;
+using System.Drawing.Text;
 
 namespace Winterland.Common {
     public class FireworkHolder : MonoBehaviour {
@@ -20,15 +21,17 @@ namespace Winterland.Common {
         public AudioClip FireworkSFX = null;
         public int FireworkAmount = 10;
         private Firework[] fireworks = null;
-        private ISlopCrewAPI slopCrewAPI = null;
         private const string PacketID = "Xmas-Client-Fireworks";
 
         private void Awake() {
             if (Instance != null) return;
             Instance = this;
             fireworks = GetComponentsInChildren<Firework>(true);
-            slopCrewAPI = APIManager.API;
-            slopCrewAPI.OnCustomPacketReceived += CustomPacketReceived;
+            if (WinterNetworking.SlopCrewInstalled) SlopCrewStep();
+            void SlopCrewStep() {
+                var slopCrewAPI = APIManager.API;
+                slopCrewAPI.OnCustomPacketReceived += CustomPacketReceived;
+            }
         }
 
         private void CustomPacketReceived(uint playerid, string packetid, byte[] data) {
@@ -39,7 +42,11 @@ namespace Winterland.Common {
         private void OnDestroy() {
             if (Instance == this)
                 Instance = null;
-            slopCrewAPI.OnCustomPacketReceived -= CustomPacketReceived;
+            if (WinterNetworking.SlopCrewInstalled) SlopCrewStep();
+            void SlopCrewStep() {
+                var slopCrewAPI = APIManager.API;
+                slopCrewAPI.OnCustomPacketReceived -= CustomPacketReceived;
+            }
         }
 
         public void Launch() {
@@ -60,8 +67,13 @@ namespace Winterland.Common {
         }
 
         public void BroadcastLaunch() {
-            if (DispatchReceivedLaunch())
-                slopCrewAPI.SendCustomPacket(PacketID, new byte[0]);
+            if (DispatchReceivedLaunch()) {
+                if (WinterNetworking.SlopCrewInstalled) SlopCrewStep();
+                void SlopCrewStep() {
+                    var slopCrewAPI = APIManager.API;
+                    slopCrewAPI.SendCustomPacket(PacketID, new byte[0]);
+                }
+            }
         }
 
         private IEnumerator LaunchCoroutine(float delay) {

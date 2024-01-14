@@ -1,3 +1,15 @@
+# WinterlandArchive
+
+This is the source code used in the [Millenium Winterland](https://thunderstore.io/c/bomb-rush-cyberfunk/p/SlopBrew/Millenium_Winterland/) event.
+
+- Assets have been removed, so it will likely not build out of the box.
+- This repository will be used as a base for future mapping tools - if you are a mapper looking for a custom level toolchain, please wait until something more generic and stable is ready.
+- The plugin originally functioned using serverside state management, which has now been removed. If you are looking for that code, see [here](https://github.com/SlopCrew/SlopCrew/pull/130).
+
+The original README has been preserved below:
+
+---
+
 # MilleniumWinterland
 ## Building
 The first time before doing anything else you should run the `initialize.ps1` script with Powershell. It will ask you for the directories the project requires, and build everything for you.
